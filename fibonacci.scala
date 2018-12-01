@@ -10,16 +10,16 @@ object Fibonacci {
   	println("Enter the amount of Fibonacci Numbers you want to print")
 
   	// Take user input for the amount of Fibonacci numbers to print.
-  	val SizeOfFibonacciNumbers = scala.io.StdIn.readInt()
+   val SizeOfFibonacciNumbers = scala.io.StdIn.readInt()
 
   	// Store the Fibonacci numbers in an array by calling the function
-    // returning an array of Fibonacci sequence.
-    val FibonacciNumbers = getFibonacciNumbers(SizeOfFibonacciNumbers)
+   // returning an array of Fibonacci sequence.
+   val FibonacciNumbers = getFibonacciNumbers(SizeOfFibonacciNumbers)
 
-    // Print the elements of the array containing the Fibonacci numbers.
-    for (i <- 0 to SizeOfFibonacciNumbers-1) {
-    	println(i + ": " + FibonacciNumbers(i))
-    }
+   // Print the elements of the array containing the Fibonacci numbers.
+   for (i <- 0 to SizeOfFibonacciNumbers-1) {
+    println(i + ": " + FibonacciNumbers(i))
+   }
   }
 
   /*
