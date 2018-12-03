@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Input the number to calculate the Fibonacci sequence up to, then press Go!</p>
+    <input type="number" id="inputNum" value=15 min=0>
+    <button onclick="callFibonacci()">Go!</button>
+    <p>The Fibonacci number at the entered index:</p>
+    <p id="outputNum"></p>
+
+    <script>
+      // Arrays are entirely mutable in javascript, so we'll use one for memoization.
+      fibonacciNumbers = [0, 1]
+
+      function fibonacci(i) {
+      	// A silly thing you can do in javascript, just check if the index has been generated
+      	if(fibonacciNumbers[i] == undefined) {
+          	// With the call of fibonacci(i-1), fibonacciNumbers[i-2] will be generated also.
+          	fibonacciNumbers[i] = fibonacci(i-1) + fibonacciNumbers[i-2];
+          }
+          return fibonacciNumbers[i];
+      }
+
+      function callFibonacci() {
+      	// The positive number from the input to calculate the Fibonacci sequence up to
+      	targetNum = document.getElementById("inputNum").value;
+          // Call fibonacci and put the result in the HTML above with id "outputNum".
+          document.getElementById("outputNum").innerHTML = fibonacci(targetNum);
+      }
+    </script>
+  </body>
+</html>
