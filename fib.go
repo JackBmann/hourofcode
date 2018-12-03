@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
 
-func fib(x int) int {
+func calculateFib(x int) int {
 	var prev, rv int = 1, 1
 	for i := 2; i < x; i++ {
 		old := rv
@@ -13,5 +17,14 @@ func fib(x int) int {
 }
 
 func main() {
-	fmt.Println(fib(10))
+	fib := calculateFib(10)
+	file, err := os.Create("fib_output.txt")
+	if err != nil {
+		panic(err)
+	}
+
+	defer file.Close()
+
+	fmt.Println(fib)
+	file.WriteString(strconv.Itoa(fib))
 }
