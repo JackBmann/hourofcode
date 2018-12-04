@@ -6,11 +6,10 @@ def get_words():
     moby_dick = open("moby_dick.txt")
 
     # populate the 'words' list with words in Moby Dick
-    for line in moby_dick:
-        words_in_line = line.split()
-        for word in words_in_line:
-            # remove punctuation from word and add it to the list of words
-            words.append(word.translate(None, string.punctuation))
+    for word in moby_dick.read().split():
+        # remove punctuation from word and add it to the list of words
+        words.append(word.translate(None, string.punctuation).lower())
+        # print words[-1]
     return words
 
 def build_word_list_without_duplicates(original_list):
@@ -43,14 +42,23 @@ def build_dictionary(word_list):
     return anagram_map
 
 def get_largest_anagram_set_key(dict):
+    largest_anagram_key = ""
+    largest_anagram_key_len = 0
+    for key in dict:
+        num_of_origins = len(dict[key])
+        if num_of_origins > largest_anagram_key_len:
+            longest_anagram_key_len = num_of_origins
+            largest_anagram_key = key
+    return (largest_anagram_key, largest_anagram_key_len)
+
+def get_longest_anagrams(dict):
     longest_anagram_key = ""
     longest_anagram_key_len = 0
     for key in dict:
-        num_of_origins = len(dict[key])
-        if num_of_origins > longest_anagram_key_len:
-            longest_anagram_key_len = num_of_origins
+        if len(dict[key]) > 2 and len(key) > longest_anagram_key_len:
+            longest_anagram_key_len = len(key)
             longest_anagram_key = key
-    return (longest_anagram_key, longest_anagram_key_len)
+    return (longest_anagram_key, dict[longest_anagram_key])
 
 
 words = get_words()
@@ -62,4 +70,5 @@ anagram_map = build_dictionary(words_without_dups)
 longest_key, longest_key_len = get_largest_anagram_set_key(anagram_map)
 
 print "The longest key (" + longest_key + ") has", longest_key_len, "words"
-print "The words associated with the longest anagram key are:", anagram_map[longest_key]
+print "The words associated with the most frequent anagram key are:", anagram_map[longest_key]
+print "The longest anagrams are:", get_longest_anagrams(anagram_map), 
