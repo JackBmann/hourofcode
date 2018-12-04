@@ -3,7 +3,7 @@ import string
 def get_words():
     # initialize a list to contain words in Moby Dick
     words = []
-    moby_dick = open("moby_dick.txt")
+    moby_dick = open("MobyDick.txt")
 
     # populate the 'words' list with words in Moby Dick
     for word in moby_dick.read().split():
@@ -55,7 +55,7 @@ def get_longest_anagrams(dict):
     longest_anagram_key = ""
     longest_anagram_key_len = 0
     for key in dict:
-        if len(dict[key]) > 2 and len(key) > longest_anagram_key_len:
+        if len(dict[key]) > 3 and len(key) > longest_anagram_key_len:
             longest_anagram_key_len = len(key)
             longest_anagram_key = key
     return (longest_anagram_key, dict[longest_anagram_key])
